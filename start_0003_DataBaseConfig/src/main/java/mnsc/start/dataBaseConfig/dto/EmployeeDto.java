@@ -1,4 +1,4 @@
-package mnsc.start.dataBaseConfig.dto;
+package mnsc.start.databaseconfig.dto;
 
 public class EmployeeDto {
 

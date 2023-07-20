@@ -1,13 +1,11 @@
-package mnsc.start.dataBaseConfig.dao.impl;
+package mnsc.start.databaseconfig.dao.impl;
 
 import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import mnsc.start.dataBaseConfig.dao.EmployeeDao;
-import mnsc.start.dataBaseConfig.dto.EmployeeDto;
+import mnsc.start.databaseconfig.dao.EmployeeDao;
+import mnsc.start.databaseconfig.dto.EmployeeDto;
 
 @Repository
 public class EmployeeDaoImpl implements EmployeeDao {

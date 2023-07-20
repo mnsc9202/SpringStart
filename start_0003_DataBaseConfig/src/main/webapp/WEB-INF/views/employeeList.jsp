@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@page import="mnsc.start.dataBaseConfig.dto.EmployeeDto"%>
+<%@page import="mnsc.start.databaseconfig.dto.EmployeeDto"%>
 <%@page import="java.util.List"%>
 <%
 	@SuppressWarnings(value = "unchecked")

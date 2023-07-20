@@ -1,4 +1,4 @@
-package mnsc.start.xmlConfig;
+package mnsc.start.xmlconfig;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

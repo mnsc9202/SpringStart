@@ -15,7 +15,7 @@
 	
 	<!-- component scan package 설정 -->
 	<context:component-scan
-		base-package="mnsc.start.dataBaseConfig" />
+		base-package="mnsc.start.databaseconfig" />
 
 	<!-- view의 경로, 확장자명 설정 -->
 	<bean id="viewResolver"
