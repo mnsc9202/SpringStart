@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="Person">
+
+	<!-- person 단건 조회 -->
+	<select id="findPerson"
+		parameterType="java.lang.String"
+		resultType="mnsc.start.useMethod.dto.PersonDto">
+		SELECT SEQ, NAME, AGE
+		FROM PERSON
+		WHERE NAME LIKE '%'||#{name}||'%'
+	</select>
+
+	<!-- person 목록 조회 -->
+	<select id="findAllPerson"
+		resultType="mnsc.start.useMethod.dto.PersonDto">
+		SELECT SEQ, NAME, AGE FROM PERSON
+	</select>
+	
+	<!-- person 등록 -->
+	<insert id="savePerson"
+		parameterType="java.util.HashMap">
+		INSERT INTO PERSON (SEQ, NAME, AGE)
+		VALUES (SEQ_PERSON.NEXTVAL, #{arrangeName}, #{dto.age})
+	</insert>
+	
+	<!-- person 등록 (템플릿) -->
+	<insert id="savePersonTemplate"
+		parameterType="mnsc.start.useMethod.dto.PersonSaveTemplateRequestDto">
+		INSERT INTO PERSON (
+			SEQ,
+			NAME, AGE)
+		VALUES (
+			SEQ_PERSON.NEXTVAL,
+			
+			<!-- 이름, 나이가 모두 입력된 경우 -->
+			<if test="name != null and age !=null">
+				#{name}, #{age}
+			</if>
+			
+			<!-- 이름, 나이 중에서 하나만 입력된 경우 -->
+			<if test="(name != null and age == null) or (name == null and age != null)">
+				'입력값 부족', 0
+			</if>
+						
+			<!-- 이름, 나이 모두 입력되지 않은 경우 -->
+			<if test="name == null and age == null">
+				'입력값 오류', -1
+			</if>
+			)
+		
+		<selectKey keyProperty="seq,name,age" resultType="mnsc.start.useMethod.dto.PersonSaveTemplateRequestDto" order="AFTER">
+			SELECT SEQ, NAME, AGE
+			FROM PERSON
+			WHERE SEQ = (SELECT MAX(SEQ) FROM PERSON)
+		</selectKey>
+	</insert>
+	
+	<!-- person 수정 -->
+	<update id="updatePerson"
+		parameterType="mnsc.start.useMethod.dto.PersonSaveRequestDto">
+		UPDATE PERSON
+		SET NAME = #{name}, AGE = #{age}
+		WHERE SEQ = #{seq}
+	</update>
+	
+	<!-- person 삭제 -->
+	<delete id="deletePerson"
+		parameterType="java.lang.Integer">
+		DELETE
+		FROM PERSON
+		WHERE SEQ = #{seq}
+	</delete>
+</mapper>
